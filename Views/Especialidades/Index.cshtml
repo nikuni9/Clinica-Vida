@@ -1,0 +1,16 @@
+@model IEnumerable<Especialidade>
+
+<h2>Especialidades</h2>
+
+<ul>
+@foreach (var e in Model)
+{
+    var contagem = (Dictionary<int, int>)ViewBag.MedicosPorEspecialidade;
+    contagem.TryGetValue(e.Id, out int total);
+
+    <li>
+        <a href="/Medicos?especialidadeId=@e.Id">@e.Nome</a>
+        (@total médico(s))
+    </li>
+}
+</ul>
